@@ -46,7 +46,7 @@ class Collection
 
     public function indexOf($value)
     {
-        var_dump($item = $this->collection);
+        $item = $this->collection;
         $indexCounter = 0;
         if (empty($this->collection)) {
             return -1;
@@ -66,20 +66,35 @@ class Collection
 
     public function remove($value)
     {
-        $this->counter--;
-        $item = $this->collection;
-      if(!$this->contains($value)){
-          return false;
-      }
-      if($item->getValue() == $value){
-          $this->collection = $item->getNext();
-      }
-      while($item->getNext() != null){
-          if ($item->getNext()->getValue() == $value){
-              $item->setNext($item->getNext()->getNext());
-          }
-          $item = $item->getNext();
-      }
+        if(!$this->contains($value)){
+            return false;
+        }
+        while($this->collection !== null && $this->collection->getValue() == $value){
+            $this->counter--;
+            $this->collection = $this->collection->getNext();
+        }
+        if($this->collection != null){
+            $item = $this->collection;
+            while($item->getNext() != null){
+                if ($item->getNext()->getValue() == $value){
+                    $this->counter--;
+                    $item->setNext($item->getNext()->getNext());
+                }
+                $item = $item->getNext();
+            }
+        }
+    }
+
+    public function get($index)
+    {
+        if($this->collection != null){
+            $item = $this->collection;
+            for($i=0;$i<$index;$i++){
+                $item = $item->getNext();
+            }
+            return $item->getValue();
+        }
+        return null;
     }
 
     public function getSize()
