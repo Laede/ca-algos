@@ -7,6 +7,9 @@ use Algo\String\Palindrome;
 
 class PalindromeTest extends TestCase
 {
+    /**
+     * @var Palindrome
+     */
     protected $palindrome;
 
     protected function setUp()

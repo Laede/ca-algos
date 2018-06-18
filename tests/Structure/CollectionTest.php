@@ -7,6 +7,9 @@ use PHPUnit\Framework\TestCase;
 
 class CollectionTest extends TestCase {
 
+    /**
+     * @var Collection
+     */
     protected $collection;
 
     protected function setUp()

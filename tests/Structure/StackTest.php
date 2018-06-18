@@ -86,4 +86,12 @@ class StackTest extends TestCase
         $this->assertEquals(3, $actual);
         $this->assertEquals(2, $size);
     }
+
+    public function test_some_shit()
+    {
+        $this->stack->push(1);
+        $this->stack->pop();
+        $a = $this->stack->pop();
+        $this->assertNull($a);
+    }
 }
