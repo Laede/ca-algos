@@ -176,8 +176,15 @@ class CollectionTest extends TestCase {
         $this->collection->append("name");
         $this->collection->append("is");
 
-        $actual = $this->collection->get('name');
+        $this->assertEquals("my", $this->collection->get(0));
+        $this->assertEquals("name", $this->collection->get(1));
+        $this->assertEquals("is", $this->collection->get(2));
+    }
 
-        $this->assertEquals(1, $actual);
+    public function test_get_should_return_null_on_empty_collection()
+    {
+        $result = $this->collection->get(0);
+
+        $this->assertNull($result);
     }
 }
